@@ -36,5 +36,7 @@
 //   }
 // }
 
+import "./auth-provider-commands/auth0";
+
 // Prevent TypeScript from reading file as legacy script
-export {}
+export {};
