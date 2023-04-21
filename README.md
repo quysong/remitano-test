@@ -50,3 +50,9 @@ npm run e2e:headless
 ```
 npm run test
 ```
+
+## Testing account
+```
+usertest1@gmail.com
+1qaz!QAZ
+```
