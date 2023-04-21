@@ -53,6 +53,7 @@ npm run test
 ```
 
 ## Testing account
+Login with below account or you can sign up a new one when click Login
 ```
 usertest1@gmail.com
 1qaz!QAZ
