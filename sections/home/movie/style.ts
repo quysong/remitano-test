@@ -24,14 +24,15 @@ export const MovieBlockStyled = styled.div`
 export const MovieListStyled = styled.div`
   margin: 0 auto;
   margin-top: 32px;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const YoutubeFrame = styled.iframe`
   width: 420px;
-  height: 315px;
+  height: 300px;
 `;
 
 export const MovieWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+  margin-top: 16px;
 `;

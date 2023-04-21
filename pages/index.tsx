@@ -1,16 +1,22 @@
 import Head from "next/head";
-import { prisma } from "../utils/db";
 import MovieList from "../sections/home/movie";
-import { Movie } from "@prisma/client";
-import { getMetadataVideo } from "../api/youtube";
-import { generateYoutubeUrl, getYoutubeVideoId } from "../utils/functions";
-import { MovieItem } from "../interfaces/movie";
+import { MovieItem, Pagination } from "../interfaces/movie";
+import { useState } from "react";
+import { getMoviePagination } from "../helpers/movie";
 
 interface HomeProps {
-  movies: MovieItem[];
+  data: Pagination<MovieItem>
 }
 export default function Home(props: HomeProps) {
-  console.log("props", props);
+  const [data, setData] = useState(props.data);
+  console.log('data', data)
+
+  const getListPagination = async (page: number) => {
+    const response = await fetch(`/api/movie?page=${page}`);
+    const jsonData = (await response.json()) as Pagination<MovieItem>;
+    setData(jsonData);
+  };
+
   return (
     <div>
       <Head>
@@ -24,7 +30,7 @@ export default function Home(props: HomeProps) {
 
       <main>
         <div>
-          <MovieList list={props.movies} />
+          <MovieList data={data} onChangePage={getListPagination} />
         </div>
       </main>
     </div>
@@ -32,47 +38,12 @@ export default function Home(props: HomeProps) {
 }
 
 export async function getServerSideProps({ params, query, ...props }) {
-  let page = 1,
-    limit = 20;
-  // get pagination
-  try {
-    page = query.page ? Number(query.page) : 1;
-    limit = query.limit ? Number(query.limit) : 100;
-  } catch (error) {
-    console.log("error", error);
-    page = 1;
-    limit = 20;
-  }
+  const page = 1;
+  const data = await getMoviePagination(page);
 
-  // get metadata youtube movies
-  let youtubeMovies = [] as MovieItem[],
-    movies = [] as Movie[];
-  try {
-    movies = await prisma.movie.findMany({
-      skip: page - 1,
-      take: limit,
-    });
-  } catch (error) {
-    console.log("get movies error", error.message);
-  }
-
-  if (movies?.length) {
-    const urls = movies.map((movie) => getYoutubeVideoId(movie.url));
-    try {
-      const rs = await getMetadataVideo(urls);
-      youtubeMovies = rs.items.map((item) => ({
-        ...item,
-        embeddedUrl: generateYoutubeUrl(item.id),
-      }));
-    } catch (error) {
-      console.log("get metadata video error", error);
-    }
-  }
-
-  console.log('youtubeMovies', youtubeMovies)
   return {
     props: {
-      movies: JSON.parse(JSON.stringify(youtubeMovies)), //Date type issue
+      data,
     },
   };
 }

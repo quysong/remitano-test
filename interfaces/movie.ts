@@ -74,3 +74,10 @@ export interface PageInfo {
   totalResults: number;
   resultsPerPage: number;
 }
+
+export interface Pagination<T> {
+  page: number;
+  limit: number;
+  total: number;
+  list: T[];
+}

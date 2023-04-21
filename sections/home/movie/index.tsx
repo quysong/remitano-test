@@ -1,5 +1,5 @@
 import React from "react";
-import { MovieItem } from "../../../interfaces/movie";
+import { MovieItem, Pagination as IPagination } from "../../../interfaces/movie";
 import {
   MovieBlockStyled,
   MovieListStyled,
@@ -13,7 +13,6 @@ import Pagination from "../../../components/pagination";
 const MovieBlock = ({ movie }: { movie: MovieItem }) => {
   return (
     <MovieWrapper>
-      <Pagination active={2} total={6} />
       <MovieBlockStyled className="movie-block" key={`movie-${movie.id}`}>
         <div>
           <YoutubeFrame
@@ -28,22 +27,31 @@ const MovieBlock = ({ movie }: { movie: MovieItem }) => {
           <OverflowText lines={3}>{movie.snippet.description}</OverflowText>
         </div>
       </MovieBlockStyled>
-      <Pagination active={2} total={6} />
     </MovieWrapper>
   );
 };
 
 interface MovieList {
-  list: MovieItem[];
+  data: IPagination<MovieItem>;
+  onChangePage: (page: number) => void;
 }
-const MovieList = ({ list }: MovieList) => {
+const MovieList = ({ data, onChangePage }: MovieList) => {
+  const {list} = data;
   return (
     <MovieListStyled>
-      {list.length
-        ? list.map((movie: MovieItem) => (
+      {list.length ? (
+        <>
+          <Pagination
+            onChangePage={onChangePage}
+            total={Math.ceil(data.total / 5)}
+          />
+          {list.map((movie: MovieItem) => (
             <MovieBlock key={`movie-${movie.id}`} movie={movie} />
-          ))
-        : "There is no movie yet!"}
+          ))}
+        </>
+      ) : (
+        "There is no movie yet!"
+      )}
     </MovieListStyled>
   );
 };
