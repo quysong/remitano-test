@@ -5,11 +5,11 @@ import { useState } from "react";
 import { getMoviePagination } from "../helpers/movie";
 
 interface HomeProps {
-  data: Pagination<MovieItem>
+  data: Pagination<MovieItem>;
 }
 export default function Home(props: HomeProps) {
   const [data, setData] = useState(props.data);
-  console.log('data', data)
+  console.log("data", data);
 
   const getListPagination = async (page: number) => {
     const response = await fetch(`/api/movie?page=${page}`);

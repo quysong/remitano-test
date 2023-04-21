@@ -1,5 +1,8 @@
 import React from "react";
-import { MovieItem, Pagination as IPagination } from "../../../interfaces/movie";
+import {
+  MovieItem,
+  Pagination as IPagination,
+} from "../../../interfaces/movie";
 import {
   MovieBlockStyled,
   MovieListStyled,
@@ -36,7 +39,7 @@ interface MovieList {
   onChangePage: (page: number) => void;
 }
 const MovieList = ({ data, onChangePage }: MovieList) => {
-  const {list} = data;
+  const { list } = data;
   return (
     <MovieListStyled>
       {list.length ? (

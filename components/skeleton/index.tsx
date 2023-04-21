@@ -6,7 +6,13 @@ interface SkeletonLoadingProps {
   width: number;
 }
 const SkeletonLoading = ({ height, width }: SkeletonLoadingProps) => {
-  return <AnimatedLoading className="skeleton-loading" height={height} width={width} />;
+  return (
+    <AnimatedLoading
+      className="skeleton-loading"
+      height={height}
+      width={width}
+    />
+  );
 };
 
 export default SkeletonLoading;

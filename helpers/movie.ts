@@ -48,7 +48,7 @@ export async function getMoviePagination(
     list: JSON.parse(JSON.stringify(youtubeMovies)),
   };
 
-  console.log('data', data)
+  console.log("data", data);
 
   return data;
 }

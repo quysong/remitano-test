@@ -11,8 +11,14 @@ export default function ShareForm() {
         <Form action="/api/movie" method="post">
           <div>
             <label htmlFor="input-url">Youtube URL</label>
-            <input id="input-url" name="url" onChange={e => setUrl(e.target.value.toString())} />
-            {url !== undefined && !isValidYoutubeUrl(url) ? <div>Invalid Youtube url format</div> : null}
+            <input
+              id="input-url"
+              name="url"
+              onChange={(e) => setUrl(e.target.value.toString())}
+            />
+            {url !== undefined && !isValidYoutubeUrl(url) ? (
+              <div>Invalid Youtube url format</div>
+            ) : null}
           </div>
           <SubmitButton type="submit">Share</SubmitButton>
         </Form>

@@ -46,7 +46,11 @@ const Header = () => {
         <Title>Funny Movies</Title>
       </Logo>
       <ActionWrapper>
-        {isLoading ? <SkeletonLoading height={20} width={100} /> : <ActionBlock />}
+        {isLoading ? (
+          <SkeletonLoading height={20} width={100} />
+        ) : (
+          <ActionBlock />
+        )}
       </ActionWrapper>
     </HeaderBlock>
   );

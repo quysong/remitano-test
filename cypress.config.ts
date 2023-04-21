@@ -1,5 +1,5 @@
 import { defineConfig } from "cypress";
-require('dotenv').config()
+require("dotenv").config();
 
 export default defineConfig({
   env: {

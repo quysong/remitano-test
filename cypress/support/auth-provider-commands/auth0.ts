@@ -6,18 +6,15 @@ function loginViaAuth0Ui() {
   // App landing page redirects to Auth0.
   cy.visit("/");
 
-   // Click on <a> "Log in"
-   cy.get('#login-btn').click();
+  // Click on <a> "Log in"
+  cy.get("#login-btn").click();
 
   // Login on Auth0.
-  cy.origin(
-    Cypress.env("auth0_domain"),
-    () => {
-      cy.get('input[name="email"]').type("usertest1@gmail.com");
-      cy.get('input[name="password"]').type("1qaz!QAZ", { log: false });
-      cy.get('form').submit();
-    }
-  );
+  cy.origin(Cypress.env("auth0_domain"), () => {
+    cy.get('input[name="email"]').type("usertest1@gmail.com");
+    cy.get('input[name="password"]').type("1qaz!QAZ", { log: false });
+    cy.get("form").submit();
+  });
 
   // Ensure Auth0 has redirected us back to the RWA.
   cy.url().should("equal", "http://localhost:3000/");

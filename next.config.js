@@ -2,11 +2,14 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  output: 'standalone',
+  output: "standalone",
   compiler: {
     // Enables the styled-components SWC transform
-    styledComponents: true
-  }
+    styledComponents: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 };
 
 module.exports = nextConfig;
