@@ -1,5 +1,5 @@
 import { Movie } from "@prisma/client";
-import { getMetadataVideo } from "../api/youtube";
+import { getMetadataVideo } from "./youtube";
 import { MovieItem, Pagination } from "../interfaces/movie";
 import { getYoutubeVideoId, generateYoutubeUrl } from "../utils/functions";
 import { prisma } from "../utils/db";
