@@ -6,6 +6,7 @@ Prisma for ORM
 MySQL for database (host on https://planetscale.com/)
 Cypress for integration test
 Jest for unit test
+Using Vercel for hosting: https://remitano-test.vercel.app/
 ```
 
 ## Start
