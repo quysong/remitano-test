@@ -1,7 +1,7 @@
 describe("Auth0", function () {
   beforeEach(function () {
     cy.loginToAuth0();
-    // cy.visit('/')
+    cy.visit('/')
   });
 
   it("shows logged in", function () {

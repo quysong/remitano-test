@@ -15,7 +15,7 @@ import Pagination from "../../../components/pagination";
 
 const MovieBlock = ({ movie }: { movie: MovieItem }) => {
   return (
-    <MovieWrapper>
+    <MovieWrapper id="movie-block">
       <MovieBlockStyled className="movie-block" key={`movie-${movie.id}`}>
         <div>
           <YoutubeFrame

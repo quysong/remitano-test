@@ -55,14 +55,14 @@ describe("Test function generateYoutubeUrl", () => {
   it("Case able to get youtube video id with only id param", () => {
     const input = "OeBVIsGkcrA";
     const actual = generateYoutubeUrl(input);
-    const expected = "https://youtube.com/watch?v=OeBVIsGkcrA";
+    const expected = "https://www.youtube.com/embed/OeBVIsGkcrA";
     expect(actual).toEqual(expected);
   });
 
   it("Case able to get youtube video id with many params", () => {
     const input = "xSXylCvquGY";
     const actual = generateYoutubeUrl(input);
-    const expected = "https://youtube.com/watch?v=xSXylCvquGY";
+    const expected = "https://www.youtube.com/embed/xSXylCvquGY";
     expect(actual).toEqual(expected);
   });
 });

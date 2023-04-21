@@ -12,7 +12,7 @@ const Pagination = ({ total = 6, onChangePage }: PaginationProps) => {
     onChangePage(page);
   };
   return (
-    <PaginationStyled>
+    <PaginationStyled id="pagination">
       <div className="pagination">
         {[...Array(total)].map((_x, index) => (
           <span
